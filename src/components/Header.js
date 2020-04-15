@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import routes from '../routes';
 
 import { withAuthUser } from '../hoc/auth';
 import { branch, compose, renderComponent } from 'recompose';
@@ -27,7 +28,7 @@ const MyNavLink = ({ href, children, disabled }) => (
 const AnonNavbar = ({ login }) => (
   <Nav navbar style={{ marginRight: '2em' }}>
     <NavItem>
-      <button className="btn btn-outline-danger" onClick={login}>
+      <button className="btn btn-danger" onClick={login}>
         Login <i className="fa fa-google"></i>
       </button>
     </NavItem>
@@ -72,7 +73,11 @@ const Header = ({ isAnon }) => {
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
-            <MyNavLink href="/utils/uuids">UUIDS</MyNavLink>
+            {routes.map(({ url, title }) => (
+              <MyNavLink href={url} key={url}>
+                {title}
+              </MyNavLink>
+            ))}
           </Nav>
         </Collapse>
       </Navbar>
