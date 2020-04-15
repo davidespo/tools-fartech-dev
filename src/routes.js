@@ -2,6 +2,7 @@ import React from 'react';
 
 import IdUtils from './pages/IdUtils';
 import Base64Utils from './pages/Base64Utils';
+import DiffUtils from './pages/DiffUtils';
 
 export default [
   {
@@ -26,5 +27,11 @@ export default [
     ),
     url: '/utils/base64',
     component: Base64Utils,
+  },
+  {
+    title: 'Diff Utils',
+    description: <p>Compare two strings.</p>,
+    url: '/utils/diff',
+    component: DiffUtils,
   },
 ];

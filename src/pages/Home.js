@@ -9,7 +9,7 @@ const HomePage = () => (
   <div className="HomePage">
     <div className="row">
       {routes.map(({ title, description, url }) => (
-        <div className="p-2" key={url}>
+        <div className="col p-2" key={url}>
           <div className="card">
             <div className="card-header">{title}</div>
             <div className="card-body">
