@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { store, persistor } from './rdx';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { NotificationContainer } from 'react-notifications';
+
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import IdUtils from './pages/IdUtils';
+
+const App = () => (
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/utils/ids" component={IdUtils} />
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
+    </PersistGate>
+    <NotificationContainer />
+  </Provider>
+);
 
 export default App;
