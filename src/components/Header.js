@@ -64,9 +64,9 @@ const Header = ({ isAnon }) => {
 
   return (
     <div>
-      <Navbar color="faded" light>
+      <Navbar dark className="bg-dark">
         <RouterLink to="/" className="navbar-brand mr-auto mono">
-          tools@F&amp;RTech.dev
+          <span className="text-warning">tools</span>@F&amp;RTech.dev
         </RouterLink>
         <AuthNavbar />
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
