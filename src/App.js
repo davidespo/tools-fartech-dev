@@ -1,5 +1,6 @@
 import React from 'react';
 import { store, persistor } from './rdx';
+import routes from './routes';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -8,7 +9,6 @@ import { NotificationContainer } from 'react-notifications';
 
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import IdUtils from './pages/IdUtils';
 
 const App = () => (
   <Provider store={store}>
@@ -16,7 +16,11 @@ const App = () => (
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/utils/ids" component={IdUtils} />
+
+          {routes.map(({ url, component }) => (
+            <Route exact path={url} component={component} key={url} />
+          ))}
+
           <Route component={NotFound} />
         </Switch>
       </Router>
