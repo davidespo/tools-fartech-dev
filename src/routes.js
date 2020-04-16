@@ -3,6 +3,7 @@ import React from 'react';
 import IdUtils from './pages/IdUtils';
 import Base64Utils from './pages/Base64Utils';
 import DiffUtils from './pages/DiffUtils';
+import DateTimeApp from './pages/dates/DateTimeApp';
 
 export default [
   {
@@ -33,5 +34,12 @@ export default [
     description: <p>Compare two strings.</p>,
     url: '/utils/diff',
     component: DiffUtils,
+  },
+  {
+    title: 'Datetime Utils',
+    description: <p>Date times are hard; tools to make life easier.</p>,
+    url: '/utils/dates',
+    exact: false,
+    component: DateTimeApp,
   },
 ];

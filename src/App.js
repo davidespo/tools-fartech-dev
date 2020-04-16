@@ -17,8 +17,13 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Home} />
 
-          {routes.map(({ url, component }) => (
-            <Route exact path={url} component={component} key={url} />
+          {routes.map(({ url, component, exact }) => (
+            <Route
+              exact={exact !== false}
+              path={url}
+              component={component}
+              key={url}
+            />
           ))}
 
           <Route component={NotFound} />

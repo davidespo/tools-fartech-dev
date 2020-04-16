@@ -12,18 +12,8 @@ import {
   Nav,
   NavItem,
 } from 'reactstrap';
-import { Link as RouterLink, NavLink as RouterNavLink } from 'react-router-dom';
-
-const MyNavLink = ({ href, children, disabled }) => (
-  <NavItem>
-    <RouterNavLink
-      to={href}
-      className={`nav-link ${disabled ? 'disabled' : ''}`}
-    >
-      {children}
-    </RouterNavLink>
-  </NavItem>
-);
+import { Link as RouterLink } from 'react-router-dom';
+import MyNavLink from './MyNavLink';
 
 const AnonNavbar = ({ login }) => (
   <Nav navbar style={{ marginRight: '2em' }}>
