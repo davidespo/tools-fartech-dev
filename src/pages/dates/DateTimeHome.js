@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 
 import CopyButton from '../../components/CopyButton';
+import { timeService } from '../../TimeService';
 
 const UTC_MILLIS = 'UTC Millis';
 const DATE = 'yyyy-mm-dd';
@@ -62,8 +63,11 @@ const DateTimeHome = () => {
   const [now, setNow] = useState(new Date());
   const [inputMs, setInputMs] = useState(`${Date.now()}`);
   let mInputDate = null;
+  let duration = null;
   try {
-    mInputDate = moment(parseInt(inputMs));
+    const ms = parseInt(inputMs);
+    mInputDate = moment(ms);
+    duration = timeService.formatDuration(now - ms);
   } catch (error) {}
   useEffect(() => {
     const handle = setInterval(() => setNow(new Date()), 200);
@@ -79,7 +83,7 @@ const DateTimeHome = () => {
   return (
     <div className="DateTimeHome">
       <div className="row">
-        <div className="col-4 p-2">
+        <div className="col-lg-4 p-2">
           <div className="card">
             <div className="card-header">
               <h3>Constants</h3>
@@ -91,7 +95,7 @@ const DateTimeHome = () => {
             </div>
           </div>
         </div>
-        <div className="col-8 p-2">
+        <div className="col-lg-8 p-2">
           <div className="card">
             <div className="card-header">
               <h3>From timestamp</h3>
@@ -106,20 +110,31 @@ const DateTimeHome = () => {
                   placeholder="UTC millisecond timestamp"
                 />
               </div>
+              <style jsx>{`
+                td,
+                th {
+                  width: 30%;
+                }
+              `}</style>
               <table className="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th>Description</th>
                     <th>Date</th>
-                    <th>Alt. Date</th>
+                    <th>Alternate Format</th>
                   </tr>
                 </thead>
                 {mInputDate && (
                   <tbody>
                     <tr>
                       <td>Relative</td>
-                      <td>{mInputDate.fromNow()}</td>
+                      <td>{toCopyButton(mInputDate.fromNow())}</td>
                       <td></td>
+                    </tr>
+                    <tr>
+                      <td>Duration</td>
+                      <td>{toCopyButton(duration.human)}</td>
+                      <td>{toCopyButton(duration.details)}</td>
                     </tr>
                     {FORMATS.map(({ label, format, secondaryFormat }) => (
                       <tr key={label}>

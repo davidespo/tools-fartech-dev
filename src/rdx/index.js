@@ -5,7 +5,7 @@ import * as models from './models';
 import { getPersistor } from '@rematch/persist';
 
 const persistPlugin = createRematchPersist({
-  whitelist: ['authUser', 'idUtil'],
+  whitelist: ['authUser', 'idUtil', 'timezones'],
   throttle: 1000,
   version: 3,
 });
@@ -16,3 +16,5 @@ export const store = init({
 });
 
 export const persistor = getPersistor();
+
+store.dispatch.timezones.refreshZones();
