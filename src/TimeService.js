@@ -13,7 +13,7 @@ const UNITS = [
 ];
 
 /**
- * http://worldtimeapi.org/
+ * https://worldtimeapi.org/
  */
 class TimeService {
   constructor(restClient = axios) {
@@ -60,7 +60,7 @@ class TimeService {
   async getZones() {
     let zones = CACHE.zones;
     if (!zones) {
-      const res = await axios('http://worldtimeapi.org/api/timezone');
+      const res = await axios('https://worldtimeapi.org/api/timezone');
       zones = res.data;
       CACHE.zones = zones;
     }
@@ -70,7 +70,7 @@ class TimeService {
     let zone = CACHE[zoneKey];
     if (!zone) {
       const res = await axios(
-        `http://worldtimeapi.org/api/timezone/` + zoneKey,
+        `https://worldtimeapi.org/api/timezone/` + zoneKey,
       );
       const { utc_offset: offset, timezone: label, abbreviation } = res.data;
 
